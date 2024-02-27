@@ -2,7 +2,7 @@ import subprocess
 import os
 
 def install_packages():
-    packages = ['pandas', 'certifi', 'nltk']
+    packages = ['pandas', 'certifi', 'nltk', 'praw', 'python-dotenv']
 
     for package in packages:
         try:
