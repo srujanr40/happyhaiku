@@ -3,16 +3,16 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
 
-   
-reddit = praw.Reddit(client_id = os.getenv('CLIENT_ID'),
+def get_top_50_comments(post_id):
+
+    load_dotenv()
+
+    reddit = praw.Reddit(client_id = os.getenv('CLIENT_ID'),
                      client_secret = os.getenv('CLIENT_SECRET'),
                      user_agent = os.getenv('USER_AGENT'),
                      username = os.getenv('USERNAME'),
                      password = os.getenv('PASSWORD'))
-
-def get_top_50_comments(post_id):
 
     comments_data = []
     
@@ -33,5 +33,3 @@ def get_top_50_comments(post_id):
     comments_df = pd.DataFrame(comments_data)
 
     return comments_df
-
-
