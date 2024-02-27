@@ -12,8 +12,26 @@ reddit = praw.Reddit(client_id = os.getenv('CLIENT_ID'),
                      username = os.getenv('USERNAME'),
                      password = os.getenv('PASSWORD'))
 
-print(reddit.read_only)
+def get_top_50_comments(post_id):
 
-subreddit = reddit.subreddit('GRE')
-# display the subreddit name
-print(subreddit.title)
+    comments_data = []
+    
+    post = reddit.submission(id=post_id)
+    post.comments.replace_more(limit=None)
+    comments = post.comments[:50]
+
+    for comment in comments:
+        comments_data.append({
+            'Comment ID': comment.id,
+            'Author': comment.author.name if comment.author else '[deleted]',
+            'Body': comment.body,
+            'Score': comment.score,
+            'Created UTC': pd.to_datetime(comment.created_utc, unit='s')
+        })
+
+    
+    comments_df = pd.DataFrame(comments_data)
+
+    return comments_df
+
+
