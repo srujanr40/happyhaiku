@@ -1,0 +1,6 @@
+nltk
+pandas
+certifi
+praw
+python-dotenv
+flask
