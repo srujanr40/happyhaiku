@@ -96,17 +96,17 @@ def apply_haiku_transformation(df):
 
 
 
-import reddit
-df = reddit.get_top_50_comments('1b0z9fb')
+# import reddit
+# df = reddit.get_top_50_comments('1b0z9fb')
 
-df = filter_haikus(df)
-df['Body'] = df['Body'].apply(preprocess_text)
-df['sentiment'] = df['Body'].apply(get_sentiment)
-df = df[df['sentiment'] == 1]
-df = apply_haiku_transformation(df)
-for index, row in df.iterrows():
-    reddit.reply_as_haiku(row['id'], row['Body'])
-print(df)
+# df = filter_haikus(df)
+# df['Body'] = df['Body'].apply(preprocess_text)
+# df['sentiment'] = df['Body'].apply(get_sentiment)
+# df = df[df['sentiment'] == 1]
+# df = apply_haiku_transformation(df)
+# for index, row in df.iterrows():
+#     reddit.reply_as_haiku(row['id'], row['Body'])
+# print(df)
 
 
 
