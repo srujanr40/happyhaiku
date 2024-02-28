@@ -34,6 +34,7 @@ def get_top_50_comments(post_id):
     return comments_df
 
 def reply_as_haiku(comment_id, reply_text):
+    reply_text = "Your comment deserves a haiku! \n" + reply_text
     load_dotenv()
     reddit = praw.Reddit(client_id=os.getenv('CLIENT_ID'),
                          client_secret=os.getenv('CLIENT_SECRET'),
