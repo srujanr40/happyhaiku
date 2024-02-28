@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 def get_top_50_comments(post_id):
 
     load_dotenv()
-
     reddit = praw.Reddit(client_id = os.getenv('CLIENT_ID'),
                      client_secret = os.getenv('CLIENT_SECRET'),
                      user_agent = os.getenv('USER_AGENT'),
@@ -33,3 +32,14 @@ def get_top_50_comments(post_id):
     comments_df = pd.DataFrame(comments_data)
 
     return comments_df
+
+def reply_as_haiku(comment_id, reply_text):
+    load_dotenv()
+    reddit = praw.Reddit(client_id=os.getenv('CLIENT_ID'),
+                         client_secret=os.getenv('CLIENT_SECRET'),
+                         user_agent=os.getenv('USER_AGENT'),
+                         username=os.getenv('USERNAME'),
+                         password=os.getenv('PASSWORD'))
+
+    comment = reddit.comment(comment_id)
+    comment.reply(reply_text)
