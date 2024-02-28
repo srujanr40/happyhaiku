@@ -21,8 +21,10 @@ This Python application utilizes the Natural Language Toolkit (NLTK) to analyze 
 ## Dependencies:
 
 NLTK: Natural Language Toolkit for natural language processing tasks.
+Pandas: Data manipulation and analysis library.
 PRAW: Python Reddit API Wrapper for accessing Reddit’s API.
-Docker: 
+Docker: To containerize the application and its dependencies.
+Flask: Web Server for the application.
 
 ## Contributing:
 Contributions to improve the code, add features, or fix bugs are welcome. Please submit pull requests or raise issues for any enhancements or problems encountered.
