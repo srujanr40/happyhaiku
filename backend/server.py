@@ -4,6 +4,10 @@ import text_processing
 
 app = Flask(__name__)
 
+@app.route('/')
+def health_check():
+    return Response('Healthy!', status=200)
+
 
 @app.route('/<postID>')
 def generate_haiku(postID):
