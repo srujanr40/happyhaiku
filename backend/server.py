@@ -11,11 +11,9 @@ def health_check():
 
 @app.route('/<postID>')
 def generate_haiku(postID):
-    try:
-        df = reddit.get_top_50_comments('1b0z9fb')
-    except:
+    df = reddit.get_top_50_comments('1b0z9fb')
+    if df is None:
         return Response('Error fetching comments', status=500)
-
 
     df = filter_haikus(df)
     df['Body'] = df['Body'].apply(preprocess_text)
@@ -27,7 +25,8 @@ def generate_haiku(postID):
             reddit.reply_as_haiku(row['id'], row['Body'])
     except:
         return Response('Error replying as haiku', status=500)
-
+    
+    print('here!')
     return Response('Success!', status=200)
 
     

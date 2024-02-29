@@ -7,11 +7,15 @@ from dotenv import load_dotenv
 def get_top_50_comments(post_id):
 
     load_dotenv()
-    reddit = praw.Reddit(client_id = os.getenv('CLIENT_ID'),
-                     client_secret = os.getenv('CLIENT_SECRET'),
-                     user_agent = os.getenv('USER_AGENT'),
-                     username = os.getenv('USERNAME'),
-                     password = os.getenv('PASSWORD'))
+    try:
+        reddit = praw.Reddit(client_id = os.getenv('CLIENT_ID'),
+                        client_secret = os.getenv('CLIENT_SECRET'),
+                        user_agent = os.getenv('USER_AGENT'),
+                        username = os.getenv('USERNAME'),
+                        password = os.getenv('PASSWORD'))
+    except:
+        print('Error authenticating with Reddit API')
+        return None
 
     comments_data = []
     
