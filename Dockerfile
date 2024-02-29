@@ -38,21 +38,21 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
-
-# Copy the initialization script into the container
-COPY initialize.py .
-
-# Run the initialization script
-CMD ["python", "initialize.py"]
-
 # Switch to the non-privileged user to run the application.
 USER appuser
 
 # Copy the source code into the container.
 COPY . .
 
+# Run the initialization script
+RUN python initialize.py
+
 # Expose the port that the application listens on.
 EXPOSE 8000
+
+# Set the environment variable to tell the Flask app that it is running in a container.
+ENV CONTAINERIZED=true
+ENV FLASK_APP=backend/server.py
 
 # Run the application.
 CMD python3 -m flask run --host=0.0.0.0:8000
